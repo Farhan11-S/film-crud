@@ -27,12 +27,10 @@ class Film extends Model
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var string[]
+     * Get the comments for the film.
      */
-    protected $hidden = [
-        'created_at',
-        'updated_at',
-    ];
+    public function comments()
+    {
+        return $this->hasMany(Komentar::class, 'film_id', 'id');
+    }
 }
