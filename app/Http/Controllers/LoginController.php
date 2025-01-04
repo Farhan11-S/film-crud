@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('film.index', absolute: false));
     }
 
     /**
@@ -32,9 +32,10 @@ class LoginController extends Controller
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
-
+        Auth::logout();
+        
         $request->session()->invalidate();
-
+        
         $request->session()->regenerateToken();
 
         return redirect('/');

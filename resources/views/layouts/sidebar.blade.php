@@ -41,6 +41,7 @@
             </li>
         </ul>
         <div class="flex flex-col">
+            @if (!auth()->check())
             <a href="/login" class="flex items-center p-2 text-white rounded-lg  hover:bg-red-600 group">
                 <svg viewBox="0 0 24 24" class="w-5 h-5 text-white transition duration-75  group-hover:text-white "
                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -61,6 +62,19 @@
                 </svg>
                 <span class="ms-3">Register</span>
             </a>
+            @else
+            <a href="/logout" class="flex items-center p-2 text-white rounded-lg  hover:bg-red-600 group">
+                <svg viewBox="0 0 24 24" class="w-5 h-5 text-white transition duration-75  group-hover:text-white "
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14 1 0 2.5 0 5-2.47.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z" />
+                    </g>
+                </svg>
+                <span class="ms-3">Logout</span>
+            </a>
+            @endif
         </div>
     </div>
 </aside>
