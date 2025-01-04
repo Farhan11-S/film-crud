@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('poster');
             $table->string('direktur');
             $table->string('tahun_rilis');
+            $table->timestamps();
         });
     }
 

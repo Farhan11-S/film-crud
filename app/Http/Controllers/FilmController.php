@@ -37,7 +37,7 @@ class FilmController extends Controller
             return redirect()->route('film.index');
         }
 
-        return view('film.create');
+        return view('dashboard.film.create');
     }
 
     /**
@@ -77,7 +77,7 @@ class FilmController extends Controller
             return redirect()->route('home');
         }
 
-        return view('film.edit', compact('film'));
+        return view('dashboard.film.edit', compact('film'));
     }
 
     /**

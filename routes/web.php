@@ -14,9 +14,9 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 
 Route::get('/logout', [LoginController::class, 'destroy'])->name('logout')->middleware('auth');
 
-Route::resource('film', FilmController::class)->only(['index', 'show']);
 Route::resource('film', FilmController::class)->except(['index', 'show'])
     ->middleware('auth');
+Route::resource('film', FilmController::class)->only(['index', 'show']);
 
 Route::post('/komentar/{filmId}', [KomentarController::class, 'store'])
     ->name('komentar.store')
