@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
+use Illuminate\Support\Facades\Storage;
 
 class FilmController extends Controller
 {
@@ -41,6 +42,11 @@ class FilmController extends Controller
     public function store(StoreFilmRequest $request)
     {
         $validated = $request->validated();
+        if ($request->hasFile('poster')) {
+            $posterPath = $request->file('poster')->store('posters', 'public');
+            $validated['poster'] = $posterPath;
+        }
+
         Film::create($validated);
 
         return redirect()->route('film.index');
@@ -73,6 +79,16 @@ class FilmController extends Controller
     public function update(UpdateFilmRequest $request, Film $film)
     {
         $validated = $request->validated();
+
+        if ($request->hasFile('poster')) {
+            // Delete the old poster if it exists
+            if ($film->poster) {
+                Storage::disk('public')->delete($film->poster);
+            }
+            // Store the new poster
+            $posterPath = $request->file('poster')->store('posters', 'public');
+            $validated['poster'] = $posterPath;
+        }
         $film->update($validated);
 
         return redirect()->route('film.index');
@@ -83,6 +99,13 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('film.index');
+        }
+
+        if ($film->poster) {
+            Storage::disk('public')->delete($film->poster);
+        }
         $film->delete();
 
         return redirect()->route('film.index');
