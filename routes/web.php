@@ -22,3 +22,7 @@ Route::post('film/{filmId}/komentar', [FilmController::class, 'storeKomentar'])
     ->middleware('auth');
 
 Route::get('/', [FilmController::class, 'guest']);
+
+// Route::get('/p', function () {
+//     return view('detail-film');
+// });
