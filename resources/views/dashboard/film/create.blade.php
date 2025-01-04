@@ -1,7 +1,9 @@
 @extends('layouts.sidebar')
 @section('content')
 
-<form method='POST' action='#' class="flex items-center justify-center">
+<form method='POST' action="{{route('film.store')}}" class=" flex items-center justify-center"
+    enctype="multipart/form-data">
+    @csrf
     <div class="bg-white px-10 py-8 rounded-xl w-screen shadow-xl max-w-sm">
         <div class="space-y-4">
             <h1 class="text-center text-2xl font-semibold text-gray-600">Buat Film</h1>
@@ -11,21 +13,27 @@
                     placeholder="Judul Film" required />
             </div>
             <span class="my-5 text-sm text-red-600">
-                Masukan judul
+                @foreach ($errors->get('judul') as $error)
+                {{ $error }}
+                @endforeach
             </span>
             <div class="flex items-center border-2 py-2 px-3 rounded-md mb-4">
                 <input class="pl-2 outline-none border-none w-full" type="text" name="direktur" value=""
                     placeholder="Direktur" required />
             </div>
             <span class="my-5 text-sm text-red-600">
-                Masukan direktur
+                @foreach ($errors->get('direktur') as $error)
+                {{ $error }}
+                @endforeach
             </span>
             <div class="flex items-center border-2 py-2 px-3 rounded-md mb-4">
                 <input class="pl-2 outline-none border-none w-full" type="number" name="tahun_rilis" value=""
                     placeholder="Tahun Rilis" required />
             </div>
             <span class="my-5 text-sm text-red-600">
-                Masukan tahun rilis
+                @foreach ($errors->get('tahun_rilis') as $error)
+                {{ $error }}
+                @endforeach
             </span>
             <div class="flex items-center mb-4">
                 <textarea id="message" rows="4" name="sinopsis"
@@ -33,7 +41,9 @@
                     placeholder="Sinopsis film......"></textarea>
             </div>
             <span class="my-5 text-sm text-red-600">
-                Masukan sinopsis film
+                @foreach ($errors->get('sinopsis') as $error)
+                {{ $error }}
+                @endforeach
             </span>
 
             <div>
@@ -46,7 +56,9 @@
                     JPEG.</p>
             </div>
             <span class="text-sm text-red-600">
-                Masukan file poster
+                @foreach ($errors->get('poster') as $error)
+                {{ $error }}
+                @endforeach
             </span>
         </div>
 

@@ -18,6 +18,7 @@ Route::resource('film', FilmController::class)->except(['index', 'show'])
     ->middleware('auth');
 Route::resource('film', FilmController::class)->only(['index', 'show']);
 
+Route::resource('komentar', KomentarController::class);
 Route::post('/komentar/{filmId}', [KomentarController::class, 'store'])
     ->name('komentar.store')
     ->middleware('auth');

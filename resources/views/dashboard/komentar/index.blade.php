@@ -20,32 +20,21 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($komentar as $i => $f)
             <tr class="bg-white border-b hover:bg-gray-50">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    1
+                    {{ $i + 1 }}
                 </th>
                 <td class="px-6 py-4">
-                    Hantu Horor
+                    {{ $f->user->nama }}
                 </td>
-                <td class="px-6 py-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer velit dolor, vulputate quis nulla sit amet, laoreet
-                    lobortis purus. Vestibulum et est lobortis, sagittis tortor id, pellentesque lorem. Sed congue
-                    non diam nec tristique.
-                    Nunc efficitur nibh elit, sit amet dictum enim malesuada sit amet. Mauris fermentum hendrerit
-                    lorem, tristique sodales
-                    lacus commodo nec. Nulla rhoncus magna ac blandit dapibus. Nam malesuada gravida nisl. Sed
-                    malesuada neque sit amet
-                    neque aliquet vehicula. Pellentesque iaculis sapien a euismod pulvinar. Sed lobortis mi et neque
-                    sollicitudin, ac
-                    gravida odio venenatis. Nam egestas lorem vestibulum mauris auctor, vitae condimentum sapien
-                    pharetra. Proin sagittis
-                    sollicitudin lacus, venenatis dapibus nunc lobortis tempus. Suspendisse potenti. Vivamus gravida
-                    nulla in odio lobortis,
-                    et aliquam odio sollicitudin. Donec quis accumsan neque, id rutrum diam.
+                <td class="px-6 py-4 text-justify">
+                    {{ $f->isi }}
                 </td>
                 <td class="px-6 py-4 space-x-2 flex items-center justify-center">
-                    <form action="#" method="POST">
+                    <form action="{{route('komentar.destroy', ['komentar' => $f])}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="_method" value="delete" />
                         <button type="submit"
                             class="bg-red-100 p-2 rounded-full hover:bg-red-600 hover:text-white transition-colors font-medium text-red-500 hover:underline">
                             Hapus
@@ -53,6 +42,7 @@
                     </form>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
