@@ -57,8 +57,11 @@ class FilmController extends Controller
      */
     public function show(Film $film)
     {
-        $film->load('komentar');
-        return view('film.show', compact('film'));
+        $film->load([
+            'komentar',
+            'komentar.user',
+        ]);
+        return view('detail-film', compact('film'));
     }
 
     /**

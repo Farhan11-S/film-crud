@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,8 @@ Route::resource('film', FilmController::class)->only(['index', 'show']);
 Route::resource('film', FilmController::class)->except(['index', 'show'])
     ->middleware('auth');
 
-Route::post('film/{filmId}/komentar', [FilmController::class, 'storeKomentar'])
-    ->name('film.komentar.store')
+Route::post('/komentar/{filmId}', [KomentarController::class, 'store'])
+    ->name('komentar.store')
     ->middleware('auth');
 
 Route::get('/', [FilmController::class, 'guest']);
