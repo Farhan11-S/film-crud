@@ -18,6 +18,9 @@ Route::post('film/{filmId}/komentar', [FilmController::class, 'storeKomentar'])
     ->name('film.komentar.store')
     ->middleware('auth');
 
-Route::get('/', function () {
-    return redirect()->route('film.index');
-});
+Route::get('/data-film', [FilmController::class, 'index']);
+Route::get('/', [FilmController::class, 'guest']);
+
+// Route::get('/p', function () {
+//     return view('dashboard.film.create');
+// });

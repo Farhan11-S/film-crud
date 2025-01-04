@@ -11,10 +11,16 @@ class FilmController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function guest()
+    {
+        $film = Film::all();
+        return view('films', compact('film'));
+    }
+
     public function index()
     {
         $film = Film::all();
-        return view('film.index', compact('film'));
+        return view('dashboard.film.index', compact('film'));
     }
 
     /**

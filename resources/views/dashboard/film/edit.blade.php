@@ -1,10 +1,10 @@
-@extends('film.sidebar')
+@extends('layouts.sidebar')
 @section('content')
 
 <form method='POST' action='#' class="flex items-center justify-center">
     <div class="bg-white px-10 py-8 rounded-xl w-screen shadow-xl max-w-sm">
         <div class="space-y-4">
-            <h1 class="text-center text-2xl font-semibold text-gray-600">Buat Film</h1>
+            <h1 class="text-center text-2xl font-semibold text-gray-600">Edit Film</h1>
             <hr>
             <div class="flex items-center border-2 py-2 px-3 rounded-md mb-4">
                 <input class="pl-2 outline-none border-none w-full" type="text" name="judul" value=""
