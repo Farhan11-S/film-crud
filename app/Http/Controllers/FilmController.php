@@ -13,7 +13,8 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //
+        $film = Film::all();
+        return view('film.index', compact('film'));
     }
 
     /**
@@ -21,7 +22,11 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('film.index');
+        }
+
+        return view('film.create');
     }
 
     /**
@@ -29,7 +34,10 @@ class FilmController extends Controller
      */
     public function store(StoreFilmRequest $request)
     {
-        //
+        $validated = $request->validated();
+        Film::create($validated);
+
+        return redirect()->route('film.index');
     }
 
     /**
@@ -37,7 +45,8 @@ class FilmController extends Controller
      */
     public function show(Film $film)
     {
-        //
+        $film->load('komentar');
+        return view('film.show', compact('film'));
     }
 
     /**
@@ -45,7 +54,11 @@ class FilmController extends Controller
      */
     public function edit(Film $film)
     {
-        //
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('film.index');
+        }
+
+        return view('film.edit', compact('film'));
     }
 
     /**
@@ -53,7 +66,10 @@ class FilmController extends Controller
      */
     public function update(UpdateFilmRequest $request, Film $film)
     {
-        //
+        $validated = $request->validated();
+        $film->update($validated);
+
+        return redirect()->route('film.index');
     }
 
     /**
@@ -61,6 +77,8 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        //
+        $film->delete();
+
+        return redirect()->route('film.index');
     }
 }

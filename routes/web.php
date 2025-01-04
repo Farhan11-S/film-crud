@@ -34,3 +34,14 @@ Route::get('/register', [RegisterController::class, 'index']);
 //         return redirect()->route('film.index');
 //     });
 // });
+Route::resource('film', FilmController::class)->only(['index', 'show']);
+Route::resource('film', FilmController::class)->except(['index', 'show'])
+    ->middleware('auth');
+
+Route::post('film/{filmId}/komentar', [FilmController::class, 'storeKomentar'])
+    ->name('film.komentar.store')
+    ->middleware('auth');
+
+Route::get('/', function () {
+    return redirect()->route('film.index');
+});

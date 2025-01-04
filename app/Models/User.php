@@ -28,6 +28,7 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -53,10 +54,7 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Get the comments for the user.
-     */
-    public function comments()
+    public function komentar()
     {
         return $this->hasMany(Komentar::class, 'user_id', 'id');
     }

@@ -26,10 +26,7 @@ class Film extends Model
         'tahun_rilis',
     ];
 
-    /**
-     * Get the comments for the film.
-     */
-    public function comments()
+    public function komentar()
     {
         return $this->hasMany(Komentar::class, 'film_id', 'id');
     }
