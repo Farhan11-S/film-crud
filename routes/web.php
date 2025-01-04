@@ -24,5 +24,5 @@ Route::post('film/{filmId}/komentar', [FilmController::class, 'storeKomentar'])
 Route::get('/', [FilmController::class, 'guest']);
 
 // Route::get('/p', function () {
-//     return view('detail-film');
+//     return view('dashboard.komentar.index');
 // });
