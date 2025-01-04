@@ -22,7 +22,7 @@ Route::post('/komentar/{filmId}', [KomentarController::class, 'store'])
     ->name('komentar.store')
     ->middleware('auth');
 
-Route::get('/', [FilmController::class, 'guest']);
+Route::get('/', [FilmController::class, 'guest'])->name('home');
 
 // Route::get('/p', function () {
 //     return view('dashboard.komentar.index');

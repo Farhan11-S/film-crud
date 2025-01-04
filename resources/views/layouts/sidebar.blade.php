@@ -28,6 +28,7 @@
                     <span class="ms-3">Dashboard</span>
                 </a>
             </li>
+            @if (auth()->check() && auth()->user()->role == 'admin')
             <li>
                 <a href="/film" class="flex items-center p-2 text-white rounded-lg  hover:bg-red-600 group">
                     <svg class="w-5 h-5 text-white transition duration-75  group-hover:text-white " fill="currentColor"
@@ -50,6 +51,7 @@
                     <span class="ms-3">Data Komentar</span>
                 </a>
             </li>
+            @endif
         </ul>
         <div class="flex flex-col">
             @if (!auth()->check())

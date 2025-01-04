@@ -29,32 +29,35 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($film as $i => $f)
             <tr class="bg-white border-b hover:bg-gray-50">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    1
+                    {{ $i + 1 }}
                 </th>
                 <td class="px-6 py-4">
-                    <img src="storages/" width="100px" height="100px" alt="pp">
+                    <img src="{{ asset('storage/' . $f->poster) }}" width="100px" height="100px" alt="pp">
                 </td>
                 <td class="px-6 py-4">
-                    Hantu Horor
+                    {{ $f->judul }}
                 </td>
                 <td class="px-6 py-4">
-                    2020
+                    {{ $f->tahun_rilis }}
                 </td>
                 <td class="px-6 py-4">
-                    Sangaji
+                    {{ $f->direktur }}
                 </td>
                 <td class="px-6 py-4 space-x-2 flex items-center justify-center">
-                    <a href="#"
+                    <a href="{{route('film.show', ['film' => $f])}}"
                         class="bg-sky-100 p-2 rounded-full hover:bg-sky-600 hover:text-white transition-colors font-medium text-sky-600 hover:underline">
                         Lihat
                     </a>
-                    <a href="#"
+                    <a href="{{route('film.edit', ['film' => $f])}}"
                         class="bg-yellow-100 p-2 rounded-full hover:bg-yellow-300 hover:text-white transition-colors font-medium text-yellow-300 hover:underline">
                         Edit
                     </a>
-                    <form action="#" method="POST">
+                    <form action="{{route('film.destroy', ['film' => $f])}}" method="post">
+                        @csrf
+                        <input type="hidden" name="_method" value="delete" />
                         <button type="submit"
                             class="bg-red-100 p-2 rounded-full hover:bg-red-600 hover:text-white transition-colors font-medium text-red-500 hover:underline">
                             Hapus
@@ -62,6 +65,7 @@
                     </form>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

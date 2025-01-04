@@ -20,6 +20,10 @@ class FilmController extends Controller
 
     public function index()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('home');
+        }
+
         $film = Film::all();
         return view('dashboard.film.index', compact('film'));
     }
@@ -70,7 +74,7 @@ class FilmController extends Controller
     public function edit(Film $film)
     {
         if (auth()->user()->role !== 'admin') {
-            return redirect()->route('film.index');
+            return redirect()->route('home');
         }
 
         return view('film.edit', compact('film'));
@@ -103,7 +107,7 @@ class FilmController extends Controller
     public function destroy(Film $film)
     {
         if (auth()->user()->role !== 'admin') {
-            return redirect()->route('film.index');
+            return redirect()->route('home');
         }
 
         if ($film->poster) {
