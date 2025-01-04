@@ -16,14 +16,6 @@ class RegisterController extends Controller
     {
         return view('register');
     }
-    
-    /**
-     * Display the registration view.
-     */
-    public function create()
-    {
-        // return view('auth.register');
-    }
 
     /**
      * Handle an incoming registration request.

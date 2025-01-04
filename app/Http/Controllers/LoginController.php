@@ -13,14 +13,6 @@ class LoginController extends Controller
     {
         return view('login');
     }
-    
-    /**
-     * Display the login view.
-     */
-    public function create()
-    {
-        // return view('auth.login');
-    }
 
     /**
      * Handle an incoming authentication request.
