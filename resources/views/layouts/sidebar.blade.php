@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="/data-film" class="flex items-center p-2 text-white rounded-lg  hover:bg-red-600 group">
+                <a href="/film" class="flex items-center p-2 text-white rounded-lg  hover:bg-red-600 group">
                     <svg class="w-5 h-5 text-white transition duration-75  group-hover:text-white " fill="currentColor"
                         role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <title />
