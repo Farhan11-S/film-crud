@@ -18,6 +18,11 @@
                         </svg>
                         <input class="pl-2 outline-none border-none w-full" type="email" name="email" value=""
                             placeholder="Email" required />
+                        <span class="my-5 text-sm text-red-600">
+                            @foreach ($errors->get('email') as $error)
+                            {{ $error }}
+                            @endforeach
+                        </span>
 
                     </div>
                     <div class="flex items-center border-2 py-2 px-3 rounded-md">
@@ -29,7 +34,11 @@
                         </svg>
                         <input class="pl-2 outline-none border-none w-full" type="password" name="password" id=""
                             placeholder="Password" required />
-
+                        <span class="my-5 text-sm text-red-600">
+                            @foreach ($errors->get('password') as $error)
+                            {{ $error }}
+                            @endforeach
+                        </span>
                     </div>
                 </div>
 
